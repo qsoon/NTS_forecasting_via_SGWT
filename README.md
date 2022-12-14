@@ -1,4 +1,4 @@
-# Network Time Series forecasting using Spectral Graph Wavelet Transform
+# Network Time Series Forecasting using Spectral Graph Wavelet Transform
 
 This repo contains the source code for network time series forecasting using SGWT. 
 
