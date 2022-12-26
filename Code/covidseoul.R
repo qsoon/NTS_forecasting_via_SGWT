@@ -33,7 +33,7 @@ source("/home/kyu9510/NTS_forecasting_via_SGWT/Code/method.R", chdir=TRUE)
 #### load data ####
 ###################
 
-covid.seoul <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/covid_seoul.csv", 
+covid.seoul <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/covidseoul/covid_seoul.csv", 
                         header=TRUE, fileEncoding = "euc-kr")
 
 covid.seoul <- covid.seoul[,c(1,2*c(1:25)+1)]
@@ -73,7 +73,7 @@ covid.seoul <- covid.seoul[,636:965]
 
 
 # include gyeonggi data
-covid.gyeonggi <- read.xlsx("/home/kyu9510/NTS_forecasting_via_SGWT/Data/covid_gyeonggi.xlsx", 1,
+covid.gyeonggi <- read.xlsx("/home/kyu9510/NTS_forecasting_via_SGWT/Data/covidseoul/covid_gyeonggi.xlsx", 1,
                             header=TRUE)
 
 district.name_kor2 <- paste(colnames(covid.gyeonggi)[-1], "시", sep="")
@@ -125,7 +125,7 @@ pred_date.covid <- colnames(covid.seoul[,243:256])
 
 
 # load location info
-seoul.district.loc <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoul_district_loc.csv", 
+seoul.district.loc <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/covidseoul/seoul_district_loc.csv", 
                                header=TRUE, fileEncoding = "euc-kr")
 
 seoul.district.loc <- seoul.district.loc[,c(2,6,7)]
@@ -136,7 +136,7 @@ seoul.district.loc <- seoul.district.loc[
   unlist(lapply(district.name_kor, 
                 function(x) which(seoul.district.loc$district %in% x))),]
 
-gyeonggi.district.loc <- read.xlsx("/home/kyu9510/NTS_forecasting_via_SGWT/Data/gyeonggi_district_loc.xlsx", 1, 
+gyeonggi.district.loc <- read.xlsx("/home/kyu9510/NTS_forecasting_via_SGWT/Data/covidseoul/gyeonggi_district_loc.xlsx", 1, 
                                    header=TRUE)
 colnames(gyeonggi.district.loc) <- colnames(seoul.district.loc)
 

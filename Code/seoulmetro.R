@@ -34,31 +34,31 @@ source("/home/kyu9510/NTS_forecasting_via_SGWT/Code/method.R", chdir=TRUE)
 ###################
 
 # station Korean, English name
-station.name <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/station_name.csv", 
+station.name <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/station_name.csv", 
                          header=TRUE, fileEncoding = "euc-kr")
 colnames(station.name) <- c("code", "name_kor", "name", "line", "external_code")
 
 
 # station latitude, longitude info
-station.loc <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/station_location.csv", 
+station.loc <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/station_location.csv", 
                         header=TRUE, fileEncoding = "euc-kr")
 colnames(station.loc) <- c("ID", "name_kor", "line", "lon", "lat")
 
-station.loc2 <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/station_location2.csv", 
+station.loc2 <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/station_location2.csv", 
                          header=TRUE, fileEncoding = "euc-kr")
 station.loc2 <- station.loc2[,c(2:6)]
 colnames(station.loc2) <- c("line", "station_num", "name_kor", "lon", "lat")
 
 
 # distance between stations
-station.distance <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/station_distance.csv", 
+station.distance <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/station_distance.csv", 
                              header=TRUE, fileEncoding = "euc-kr")
 
 station.distance <- station.distance[, c(2:5)]
 colnames(station.distance) <- c("line", "name_kor", "btwdist", "cumdist")
 
 # 2021 hourly getting on/off info for each station
-hourly.pplnum.2021 <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/hourly_pplnum_2021.csv", 
+hourly.pplnum.2021 <- read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/hourly_pplnum_2021.csv", 
                                header=TRUE, fileEncoding = "euc-kr")
 hourly.pplnum.2021 <- hourly.pplnum.2021[, -1]
 colnames(hourly.pplnum.2021) <- c("date", "line", "station_num", "name_kor", "type",
@@ -311,8 +311,8 @@ e.sp.weight <- tmp
 e.sp.weight.old <- e.sp.weight
 e.sp.weight.old[,3] <- tmp2
 
-write.csv(station.info,file="/home/kyu9510/NTS_forecasting_via_SGWT/Data/master_station_info.csv", row.names=FALSE)
-write.csv(station.distance,file="/home/kyu9510/NTS_forecasting_via_SGWT/Data/master_station_distance.csv", row.names=FALSE)
+write.csv(station.info,file="/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/master_station_info.csv", row.names=FALSE)
+write.csv(station.distance,file="/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/master_station_distance.csv", row.names=FALSE)
 
 
 ############################################################################################################
@@ -321,8 +321,8 @@ write.csv(station.distance,file="/home/kyu9510/NTS_forecasting_via_SGWT/Data/mas
 ############################################################################################################
 ############################################################################################################
 
-station.info = read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/master_station_info.csv")
-station.distance = read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/master_station_distance.csv")
+station.info = read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/master_station_info.csv")
+station.distance = read.csv("/home/kyu9510/NTS_forecasting_via_SGWT/Data/seoulmetro/master_station_distance.csv")
 
 ##############################
 #### make seoulmetro data ####
