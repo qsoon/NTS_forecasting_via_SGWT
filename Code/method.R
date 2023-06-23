@@ -62,7 +62,7 @@ update_graph <- function(G, i, nbrs, given){
     E(G1)$weight <- A[,3]
     mst <- minimum.spanning.tree(G1)
     
-    edge.wt <- as_data_frame(mst, what="edges")
+    edge.wt <- igraph::as_data_frame(mst, what="edges")
     tmp <- nrow(edge.wt)
     edge.wt <- sapply(edge.wt, as.numeric)
     
@@ -499,9 +499,9 @@ forecast_narima0 <- function(vts, h, N, net, max.alpha, max.beta, globalalpha = 
 # GFT function
 compute_gft <- function(f, evectors){
   res <- c()
-  n <- length(f)
-  for(i in 1:n){
-    res[i] <- sum(evectors[,i]*f)
+  N <- nrow(f)
+  for(i in 1:N){
+    res<- rbind(res, colSums(evectors[,i]*f))
   }
   return(res)
 }

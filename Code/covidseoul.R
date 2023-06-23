@@ -165,7 +165,7 @@ mst <- minimum.spanning.tree(G)
 
 
 # as_data_frame(mst, what="vertices")
-edge.wt <- as_data_frame(mst, what="edges")
+edge.wt <- igraph::as_data_frame(mst, what="edges")
 edge.wt <- sapply(edge.wt, as.numeric)
 
 wmat <- matrix(0, nrow=N.covid, ncol=N.covid)
@@ -419,32 +419,32 @@ pred.nodewise.arima.covid.log.diff <- t(diffinv(t(res), lag=7, differences=1,
 #####################
 plt1.covid.rmse <- vector(length=14)
 for(i in 1:14){
-  plt1.covid.rmse[i] <- rmse(c(true_data.covid[,i]), c(pred.nodewise.arima.covid.log.diff[,i]))
+  plt1.covid.rmse[i] <- rmse(c(true_data.covid.log[,i]), c(pred.nodewise.arima.covid.log.diff[,i]))
 }
 
 plt2.covid.rmse <- vector(length=14)
 for(i in 1:14){
-  plt2.covid.rmse[i] <- rmse(c(true_data.covid[,i]), c(pred.covid.log.diff.spdiff[,i]))
+  plt2.covid.rmse[i] <- rmse(c(true_data.covid.log[,i]), c(pred.covid.log.diff.spdiff[,i]))
 }
 
 plt3.covid.rmse <- vector(length=14)
 for(i in 1:14){
-  plt3.covid.rmse[i] <- rmse(c(true_data.covid[,i]), c(pred.gnar.covid.log.diff0[,i]))
+  plt3.covid.rmse[i] <- rmse(c(true_data.covid.log[,i]), c(pred.gnar.covid.log.diff0[,i]))
 }
 
 plt4.covid.rmse <- vector(length=14)
 for(i in 1:14){
-  plt4.covid.rmse[i] <- rmse(c(true_data.covid[,i]), c(pred.gnar.covid.log.diff.spdiff[,i]))
+  plt4.covid.rmse[i] <- rmse(c(true_data.covid.log[,i]), c(pred.gnar.covid.log.diff.spdiff[,i]))
 }
 
 plt5.covid.rmse <- vector(length=14)
 for(i in 1:14){
-  plt5.covid.rmse[i] <- rmse(c(true_data.covid[,i]), c(pred.gft.covid.log.diff[,i]))
+  plt5.covid.rmse[i] <- rmse(c(true_data.covid.log[,i]), c(pred.gft.covid.log.diff[,i]))
 }
 
 plt6.covid.rmse <- vector(length=14)
 for(i in 1:14){
-  plt6.covid.rmse[i] <- rmse(c(true_data.covid[,i]), c(pred.sgwt.arima.covid.log.diff[,i]))
+  plt6.covid.rmse[i] <- rmse(c(true_data.covid.log[,i]), c(pred.sgwt.arima.covid.log.diff[,i]))
 }
 
 
@@ -453,7 +453,7 @@ plt1.covid.crmse <- vector(length=14)
 for(i in 1:14){
   tmp <- 0
   for(j in 1:i){
-    tmp <- tmp + sum((c(true_data.covid[,j]) - c(pred.nodewise.arima.covid.log.diff[,j]))^2)
+    tmp <- tmp + sum((c(true_data.covid.log[,j]) - c(pred.nodewise.arima.covid.log.diff[,j]))^2)
   }
   plt1.covid.crmse[i] <- sqrt(tmp/N.covid)
 }
@@ -463,7 +463,7 @@ plt2.covid.crmse <- vector(length=14)
 for(i in 1:14){
   tmp <- 0
   for(j in 1:i){
-    tmp <- tmp + sum((c(true_data.covid[,j]) - c(pred.covid.log.diff.spdiff[,j]))^2)
+    tmp <- tmp + sum((c(true_data.covid.log[,j]) - c(pred.covid.log.diff.spdiff[,j]))^2)
   }
   plt2.covid.crmse[i] <- sqrt(tmp/N.covid)
 }
@@ -472,7 +472,7 @@ plt3.covid.crmse <- vector(length=14)
 for(i in 1:14){
   tmp <- 0
   for(j in 1:i){
-    tmp <- tmp + sum((c(true_data.covid[,j]) - c(pred.gnar.covid.log.diff0[,j]))^2)
+    tmp <- tmp + sum((c(true_data.covid.log[,j]) - c(pred.gnar.covid.log.diff0[,j]))^2)
   }
   plt3.covid.crmse[i] <- sqrt(tmp/N.covid)
 }
@@ -482,7 +482,7 @@ plt4.covid.crmse <- vector(length=14)
 for(i in 1:14){
   tmp <- 0
   for(j in 1:i){
-    tmp <- tmp + sum((c(true_data.covid[,j]) - c(pred.gnar.covid.log.diff.spdiff[,j]))^2)
+    tmp <- tmp + sum((c(true_data.covid.log[,j]) - c(pred.gnar.covid.log.diff.spdiff[,j]))^2)
   }
   plt4.covid.crmse[i] <- sqrt(tmp/N.covid)
 }
@@ -492,7 +492,7 @@ plt5.covid.crmse <- vector(length=14)
 for(i in 1:14){
   tmp <- 0
   for(j in 1:i){
-    tmp <- tmp + sum((c(true_data.covid[,j]) - c(pred.gft.covid.log.diff[,j]))^2)
+    tmp <- tmp + sum((c(true_data.covid.log[,j]) - c(pred.gft.covid.log.diff[,j]))^2)
   }
   plt5.covid.crmse[i] <- sqrt(tmp/N.covid)
 }
@@ -501,7 +501,7 @@ plt6.covid.crmse <- vector(length=14)
 for(i in 1:14){
   tmp <- 0
   for(j in 1:i){
-    tmp <- tmp + sum((c(true_data.covid[,j]) - c(pred.sgwt.arima.covid.log.diff[,j]))^2)
+    tmp <- tmp + sum((c(true_data.covid.log[,j]) - c(pred.sgwt.arima.covid.log.diff[,j]))^2)
   }
   plt6.covid.crmse[i] <- sqrt(tmp/N.covid)
 }
@@ -533,7 +533,7 @@ points(1:14, plt6.covid.rmse, col="red", pch=16)
 plot(plt1.covid.crmse, col="black", pch=16,
      ylim = c(min(plt1.covid.crmse, plt2.covid.crmse, plt3.covid.crmse, plt4.covid.crmse, plt5.covid.crmse, plt6.covid.crmse), 
               max(plt1.covid.crmse, plt2.covid.crmse, plt3.covid.crmse, plt4.covid.crmse, plt5.covid.crmse, plt6.covid.crmse)), 
-     main = "", ylab="RMSE", xlab = "day", cex.lab=1.3)
+     main = "", ylab="cRMSE", xlab = "day", cex.lab=1.3)
 lines(1:14, plt1.covid.crmse, col="black")
 lines(1:14, plt2.covid.crmse, col="magenta")
 lines(1:14, plt3.covid.crmse, col="green")

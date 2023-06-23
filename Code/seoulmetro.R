@@ -528,7 +528,16 @@ holiday_cleansing <- function(signal, holidays.ind){
 
 train_data.metro.cleansed <- holiday_cleansing(train_data.metro, holidays.ind)
 
+pred_date.metro <- as.character(seq(as.Date("2021-11-17"), by = "day", length.out = 14))
+h.metro <- length(pred_date.metro)
 
+# true signal is signal in November 2021
+true_data.metro <- matrix(0, nrow=N.metro, ncol=h.metro)
+for(i in 1:h.metro){
+  true_data.metro[,i] <- station.info[station.info$date == pred_date.metro[i],]$total
+}  
+rownames(true_data.metro) <- target_station
+colnames(true_data.metro) <- pred_date.metro
 
 ################################
 ### USE DIFFERENCED DATA     ###
@@ -819,7 +828,7 @@ points(1:14, plt6.metro.rmse, col="red", pch=16)
 plot(plt1.metro.crmse, col="black", pch=16,
      ylim = c(min(plt1.metro.crmse, plt2.metro.crmse, plt3.metro.crmse, plt4.metro.crmse, plt5.metro.crmse, plt6.metro.crmse), 
               max(plt1.metro.crmse, plt2.metro.crmse, plt3.metro.crmse, plt4.metro.crmse, plt5.metro.crmse, plt6.metro.crmse)), 
-     main = "", ylab="RMSE", xlab = "day", cex.lab=1.3)
+     main = "", ylab="cRMSE", xlab = "day", cex.lab=1.3)
 lines(1:14, plt1.metro.crmse, col="black")
 lines(1:14, plt2.metro.crmse, col="magenta")
 lines(1:14, plt3.metro.crmse, col="green")
