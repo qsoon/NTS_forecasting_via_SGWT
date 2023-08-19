@@ -22,7 +22,7 @@ library(scales)
 library(igraph)
 
 # load functions
-source("/home/kyu9510/NTS_forecasting_via_SGWT/Code/method.R", chdir=TRUE)
+source("method.R", chdir=TRUE)
 
 ###################################################
 ## Scenario1 : Random Network Time Series

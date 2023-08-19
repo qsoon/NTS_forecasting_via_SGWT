@@ -23,7 +23,7 @@ library(igraph)
 
 
 # load functions
-source("/home/kyu9510/NTS_forecasting_via_SGWT/Code/method.R", chdir=TRUE)
+source("method.R", chdir=TRUE)
 
 
 #### Seoul covid19 data #####
