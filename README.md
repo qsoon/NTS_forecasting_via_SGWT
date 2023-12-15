@@ -2,6 +2,7 @@
 
 This repo contains the source code for network time series forecasting using SGWT. 
 
+For the detail, please refer to our paper: [https://doi.org/10.1016/j.ijforecast.2023.08.006](https://doi.org/10.1016/j.ijforecast.2023.08.006).
 
 ## Description
 
