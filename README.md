@@ -25,3 +25,6 @@ The methods used in the analysis are
   - GNARI + LOCAAT
   - GFT-based method
   - SGWT-based method
+
+## References
+Kim, K. and Oh, H.-S. (2024). Network time series forecasting using spectral graph wavelet transform. International Journal of Forecasting, 40(3), 971-984.
